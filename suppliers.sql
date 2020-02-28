@@ -1,0 +1,64 @@
+CREATE DATABASE suppliers;
+USE suppliers;
+CREATE TABLE SUPPLIERS (
+sid int,
+sname varchar(50),
+city varchar(50),
+PRIMARY KEY(sname)
+);
+DESC SUPPLIERS;
+INSERT INTO SUPPLIERS(sid,sname,city)
+VALUES(10001,'Acme Widget','Bangalore');
+INSERT INTO SUPPLIERS(sid,sname,city)
+VALUES(10002,'Johns','Kolkata');
+INSERT INTO SUPPLIERS(sid,sname,city)
+VALUES(10003,'Vimal','Mumbai');
+INSERT INTO SUPPLIERS(sid,sname,city)
+VALUES(10004,'Reliance','Delhi');
+ALTER TABLE SUPPLIERS
+DROP PRIMARY KEY;
+ALTER TABLE SUPPLIERS
+ADD PRIMARY KEY(sid);
+CREATE TABLE PARTS(
+pid int,
+pname varchar(50),
+color varchar(50),
+PRIMARY KEY(pid)
+);
+INSERT INTO PARTS(pid,pname,color)
+VALUES(20001,'Book','Red');
+INSERT INTO PARTS(pid,pname,color)
+VALUES(20002,'Pen','Red');
+INSERT INTO PARTS(pid,pname,color)
+VALUES(20003,'Pencil','Green');
+INSERT INTO PARTS(pid,pname,color)
+VALUES(20004,'Mobile','Green');
+INSERT INTO PARTS(pid,pname,color)
+VALUES(20005,'Charger','Black');
+select * from PARTS;
+CREATE TABLE CATALOG(
+sid int,
+pid int, 
+cost float(10),
+FOREIGN KEY(sid) REFERENCES SUPPLIERS(sid),
+FOREIGN KEY(pid) REFERENCES PARTS(pid),
+PRIMARY KEY(sid,pid)
+);
+INSERT INTO CATALOG(sid,pid,cost)
+VALUES(10001,20001,10);
+INSERT INTO CATALOG(sid,pid,cost)
+VALUES(10001,20002,10);
+INSERT INTO CATALOG(sid,pid,cost)
+VALUES(10001,20003,30);
+INSERT INTO CATALOG(sid,pid,cost)
+VALUES(10001,20004,10);
+INSERT INTO CATALOG(sid,pid,cost)
+VALUES(10001,20005,10);
+INSERT INTO CATALOG(sid,pid,cost)
+VALUES(10002,20001,10);
+INSERT INTO CATALOG(sid,pid,cost)
+VALUES(10002,20002,20);
+INSERT INTO CATALOG(sid,pid,cost)
+VALUES(10003,20003,30);
+INSERT INTO CATALOG(sid,pid,cost)
+VALUES(10004,20004,40);
